@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="js/jquery-3.6.1.min.js"></script> -->
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Умножение</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="noselect">
+    <div
+      class="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:items-center sm:space-y-0 sm:space-x-6 bg-zinc-200 my-1"
+    >
+      <div
+        class="space-y-2 sm:text-left rounded-xl py-8 px-8 bg-zinc-100"
+        id="app"
+        v-cloak
+      >
+        <div class="space-y-0.5">
+          <div>
+            <p class="text-lg text-blue-900 font-semibold">
+              Правильных ответов: {{ positive }}
+            </p>
+          </div>
+          <div>
+            <p class="text-lg text-red-900 font-semibold">
+              Неправильных ответов: {{ negative }}
+            </p>
+          </div>
+
+          <div
+            class="my-spin text-lg text-black font-semibold"
+            :key="message"
+            v-html="message"
+          ></div>
+        </div>
+
+        <div>
+          <div class="form-input px-4 py-3 rounded-full shadow-sm">
+            <div style="margin-bottom: 20px" class="animate-bounce">
+              <p class="text-2xl text-cyan-900 font-semibold">
+                <span class="shadow-lg rounded-lg bg-zinc-50 py-1 px-5">
+                  {{ question }}
+                </span>
+              </p>
+            </div>
+            <div style="margin-bottom: 20px">
+              <input
+                type="number"
+                inputmode="decimal"
+                name="answer"
+                id="answer"
+                v-bind:value="inputValue"
+                v-on:input="inputChangeHandler"
+                @keypress.enter="check"
+                autofocus
+                class="form-input px-2 py-1 rounded-full shadow-xl"
+              />
+            </div>
+
+            <!--keyboard-->
+            <div class="keyboard my-3 text-lg">
+              <div class="row">
+                <div
+                  @click="inputValue=inputValue + '1'"
+                  class="shadow-xl"
+                  id="num1"
+                >
+                  1
+                </div>
+                <div
+                  @click="inputValue=inputValue + '2'"
+                  class="shadow-xl"
+                  id="num2"
+                >
+                  2
+                </div>
+                <div
+                  @click="inputValue=inputValue + '3'"
+                  class="shadow-xl"
+                  id="num3"
+                >
+                  3
+                </div>
+                <div
+                  @click="inputValue=inputValue + '4'"
+                  class="shadow-xl"
+                  id="num4"
+                >
+                  4
+                </div>
+              </div>
+              <div class="row">
+                <div
+                  @click="inputValue=inputValue + '5'"
+                  class="shadow-xl"
+                  id="num5"
+                >
+                  5
+                </div>
+                <div
+                  @click="inputValue=inputValue + '6'"
+                  class="shadow-xl"
+                  id="num6"
+                >
+                  6
+                </div>
+                <div
+                  @click="inputValue=inputValue + '7'"
+                  class="shadow-xl"
+                  id="num7"
+                >
+                  7
+                </div>
+                <div
+                  @click="inputValue=inputValue + '8'"
+                  class="shadow-xl"
+                  id="num8"
+                >
+                  8
+                </div>
+              </div>
+              <div class="row">
+                <div
+                  @click="inputValue=inputValue + '9'"
+                  class="shadow-xl"
+                  id="num9"
+                >
+                  9
+                </div>
+                <div
+                  @click="inputValue=inputValue + '0'"
+                  class="shadow-xl"
+                  id="num0"
+                >
+                  0
+                </div>
+                <div @click="inputValue=''" class="shadow-xl" id="num-del">
+                  <
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 25px" class="shadow-sm">
+              <button
+                class="px-4 py-1 text-sm text-black font-semibold rounded-full border border-black shadow-xl"
+                @click="check"
+              >
+                Проверить
+              </button>
+            </div>
+            <div style="margin-bottom: 15px">
+              <button
+                class="px-4 py-1 text-sm text-black font-semibold rounded-full border border-black shadow-xl"
+                @click="reset"
+              >
+                СБРОС
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
