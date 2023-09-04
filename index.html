@@ -7,7 +7,6 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/main.css" />
     <title>Умножение</title>
     <style>
@@ -17,84 +16,62 @@
     </style>
   </head>
   <body class="noselect">
-    <div
-      class="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:items-center sm:space-y-0 sm:space-x-6 bg-zinc-200 my-1"
-    >
-      <div
-        class="space-y-2 sm:text-left rounded-xl py-8 px-8 bg-zinc-100"
-        id="app"
-        v-cloak
-      >
-        <div class="space-y-0.5">
+    <div class="wrapper">
+      <div class="main" id="app" v-cloak>
+        <div class="message-box">
           <div>
-            <p class="text-lg text-blue-900 font-semibold">
-              Правильных ответов: {{ positive }}
-            </p>
+            <p class="message positive">Правильных ответов: {{ positive }}</p>
           </div>
           <div>
-            <p class="text-lg text-red-900 font-semibold">
-              Неправильных ответов: {{ negative }}
-            </p>
+            <p class="message negative">Неправильных ответов: {{ negative }}</p>
           </div>
 
-          <div
-            class="my-spin text-lg text-black font-semibold"
-            :key="message"
-            v-html="message"
-          ></div>
+          <div class="my-spin message" :key="message" v-html="message"></div>
         </div>
 
         <div>
-          <div class="form-input px-4 py-3 rounded-full shadow-sm">
-            <div style="margin-bottom: 20px" class="animate-bounce">
-              <p class="text-2xl text-cyan-900 font-semibold">
-                <span class="shadow-lg rounded-lg bg-zinc-50 py-1 px-5">
-                  {{ question }}
-                </span>
+          <div class="question">
+            <div class="animate">
+              <p class="question-text">
+                <span class="question-span"> {{ question }} </span>
               </p>
             </div>
-            <div style="margin-bottom: 20px">
+            <div class="answer-wrapper">
               <input
                 type="number"
                 inputmode="decimal"
-                name="answer"
-                id="answer"
                 v-bind:value="inputValue"
                 v-on:input="inputChangeHandler"
                 @keypress.enter="check"
                 autofocus
-                class="form-input px-2 py-1 rounded-full shadow-xl"
+                class="answer"
               />
             </div>
 
             <!--keyboard-->
-            <div class="keyboard my-3 text-lg">
+            <div class="keyboard">
               <div class="row">
                 <div
                   @click="inputValue=inputValue + '1'"
-                  class="shadow-xl"
-                  id="num1"
+                  class="keyboard-button"
                 >
                   1
                 </div>
                 <div
                   @click="inputValue=inputValue + '2'"
-                  class="shadow-xl"
-                  id="num2"
+                  class="keyboard-button"
                 >
                   2
                 </div>
                 <div
                   @click="inputValue=inputValue + '3'"
-                  class="shadow-xl"
-                  id="num3"
+                  class="keyboard-button"
                 >
                   3
                 </div>
                 <div
                   @click="inputValue=inputValue + '4'"
-                  class="shadow-xl"
-                  id="num4"
+                  class="keyboard-button"
                 >
                   4
                 </div>
@@ -102,29 +79,25 @@
               <div class="row">
                 <div
                   @click="inputValue=inputValue + '5'"
-                  class="shadow-xl"
-                  id="num5"
+                  class="keyboard-button"
                 >
                   5
                 </div>
                 <div
                   @click="inputValue=inputValue + '6'"
-                  class="shadow-xl"
-                  id="num6"
+                  class="keyboard-button"
                 >
                   6
                 </div>
                 <div
                   @click="inputValue=inputValue + '7'"
-                  class="shadow-xl"
-                  id="num7"
+                  class="keyboard-button"
                 >
                   7
                 </div>
                 <div
                   @click="inputValue=inputValue + '8'"
-                  class="shadow-xl"
-                  id="num8"
+                  class="keyboard-button"
                 >
                   8
                 </div>
@@ -132,39 +105,25 @@
               <div class="row">
                 <div
                   @click="inputValue=inputValue + '9'"
-                  class="shadow-xl"
-                  id="num9"
+                  class="keyboard-button"
                 >
                   9
                 </div>
                 <div
                   @click="inputValue=inputValue + '0'"
-                  class="shadow-xl"
-                  id="num0"
+                  class="keyboard-button"
                 >
                   0
                 </div>
-                <div @click="inputValue=''" class="shadow-xl" id="num-del">
-                  <
-                </div>
+                <div @click="inputValue=''" class="keyboard-button"><</div>
               </div>
             </div>
 
-            <div style="margin-bottom: 25px" class="shadow-sm">
-              <button
-                class="px-4 py-1 text-sm text-black font-semibold rounded-full border border-black shadow-xl"
-                @click="check"
-              >
-                Проверить
-              </button>
+            <div class="check-wrapper">
+              <button class="control-button" @click="check">Проверить</button>
             </div>
-            <div style="margin-bottom: 15px">
-              <button
-                class="px-4 py-1 text-sm text-black font-semibold rounded-full border border-black shadow-xl"
-                @click="reset"
-              >
-                СБРОС
-              </button>
+            <div class="reset-wrapper">
+              <button class="control-button" @click="reset">СБРОС</button>
             </div>
           </div>
         </div>
